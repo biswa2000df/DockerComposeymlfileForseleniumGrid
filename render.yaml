@@ -1,29 +1,26 @@
 services:
-  - name: selenium-hub
-    type: web
+  - type: web
+    name: selenium-hub
     env: docker
-    dockerfilePath: ./Dockerfile  # Point to your Dockerfile if necessary, or use the image below
     image: selenium/hub:4.25.0-20241024
-    plan: free  # Choose a plan that fits your requirements
+    plan: free  # or choose a different plan
     envVars:
       - key: PORT
-        value: 4444
+        value: "4444"  # Ensure this is a string
     ports:
-      - 4442
-      - 4443
-      - 4444
+      - "4444"  # This should match the port you're exposing
 
-  - name: chrome
-    type: web
+  - type: web
+    name: chrome
     env: docker
     image: selenium/node-chrome:4.25.0-20241024
-    plan: free
+    plan: free  # or choose a different plan
     envVars:
       - key: SE_EVENT_BUS_HOST
         value: selenium-hub
       - key: SE_EVENT_BUS_PUBLISH_PORT
-        value: 4442
+        value: "4442"
       - key: SE_EVENT_BUS_SUBSCRIBE_PORT
-        value: 4443
+        value: "4443"
     dependsOn:
       - selenium-hub
