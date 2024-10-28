@@ -7,4 +7,4 @@ WORKDIR /app
 COPY docker-compose.yml /app/docker-compose.yml
 
 # Command to run Docker Compose
-CMD ["docker-compose", "-f", "docker-compose-v3.yml", "up", "-d"]
+CMD ["docker-compose", "-f", "docker-compose.yml", "up", "-d"]
